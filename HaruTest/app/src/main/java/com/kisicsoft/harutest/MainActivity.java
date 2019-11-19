@@ -3,12 +3,14 @@ package com.kisicsoft.harutest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,6 +43,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState.EXPANDED;
+
 public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     String wt;
     ImageView widgetIv;
     TextView widgetTv;
+    long time = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,10 +103,17 @@ public class MainActivity extends AppCompatActivity {
         btnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 switch (item.getItemId()){
-                    case R.id.review:
+                    case R.id.home:
+                        layout.setVisibility(View.VISIBLE);
                         break;
                     case R.id.more:
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        MoreFragment moreFragment = new MoreFragment();
+                        transaction.show(moreFragment);
+                        transaction.addToBackStack(null);
+                        layout.setVisibility(View.INVISIBLE);
                         break;
 
                 }
@@ -112,13 +124,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void moveSearch(View view) {
         btnv.setVisibility(View.INVISIBLE);
-        layout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+        layout.setPanelState(EXPANDED);
     }
 
     @Override
     public void onBackPressed() {
+        if(layout.getPanelState() == EXPANDED){
         layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         btnv.setVisibility(View.VISIBLE);
+        } else if (System.currentTimeMillis() - time >= 2000){
+            time = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "뒤로 버톤을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show();
+        } else if(System.currentTimeMillis() - time < 2000){
+            ActivityCompat.finishAffinity(this);
+            System.runFinalizersOnExit(true);
+            System.exit(0);
+        }
     }
 
     public void closingSearch(View view) {layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
