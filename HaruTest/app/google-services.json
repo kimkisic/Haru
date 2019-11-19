@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "172276606731",
+    "firebase_url": "https://harutest.firebaseio.com",
+    "project_id": "harutest",
+    "storage_bucket": "harutest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172276606731:android:23beabddc7631ca6ee640e",
+        "android_client_info": {
+          "package_name": "com.kisicsoft.harutest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172276606731-vfa365ntcqac8ho0sr0n12b0ighbcsg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbytQkW-zmXpAOKon7G8EUwc6BrG2kj7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172276606731-vfa365ntcqac8ho0sr0n12b0ighbcsg0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
