@@ -43,19 +43,19 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 import static com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState.EXPANDED;
 
 public class MainActivity extends AppCompatActivity {
 
-    TabLayout tabLayout;
-    ViewPager pager;
-    FragmentAdapter adapter;
+    MoreFragment moreFragment;
+    HomeFragment homeFragment;
+    MyPlaceFragment myPlaceFragment;
+    MyInfoFragment myInfoFragment;
+    ReviewFragment reviewFragment;
+
     SlidingUpPanelLayout layout;
-    LinearLayout linearLayout;
     BottomNavigationView btnv;
-    String wt;
-    ImageView widgetIv;
-    TextView widgetTv;
     long time = 0;
 
     @Override
@@ -63,57 +63,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        layout = (SlidingUpPanelLayout)findViewById(R.id.sliding);
-        btnv = (BottomNavigationView)findViewById(R.id.btnv);
-        linearLayout = (LinearLayout)findViewById(R.id.linear);
-        tabLayout = (TabLayout)findViewById(R.id.tablayout);
-        pager = (ViewPager)findViewById(R.id.pager);
-        adapter = new FragmentAdapter(getSupportFragmentManager());
-        pager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(pager);
-        widgetIv = (ImageView)findViewById(R.id.widgetIv);
-        widgetTv = (TextView)findViewById(R.id.widgetTv);
+        moreFragment = new MoreFragment();
+        homeFragment = new HomeFragment();
+        myPlaceFragment = new MyPlaceFragment();
+        myInfoFragment = new MyInfoFragment();
+        reviewFragment = new ReviewFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).addToBackStack(null).commit();
 
-        new Thread(){
-            @Override
-            public void run() {
-                Document doc = null;
-        try {
-            doc = Jsoup.connect("https://weather.naver.com/rgn/cityWetrCity.nhn?cityRgnCd=CT001013").get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Elements weather = doc.select("h4.first img");
-        wt = weather.attr("alt");
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                widgetTv.setText("오늘 서울은\n"+wt+"입니다.");
-                if(wt.equals("흐림")){
-                    widgetIv.setImageResource(R.drawable.cloudy);
-                } else if(wt.equals("맑음")){
-                    widgetIv.setImageResource(R.drawable.sun);
-                }
-            }
-        });
-            }
-        }.start();
+        layout = (SlidingUpPanelLayout)findViewById(R.id.sliding);
+
+        btnv = (BottomNavigationView)findViewById(R.id.btnv);
 
         layout.setTouchEnabled(false);
+
+
         btnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()){
                     case R.id.home:
-                        layout.setVisibility(View.VISIBLE);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).addToBackStack(null).commit();
+                        break;
+                    case R.id.review:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, reviewFragment).addToBackStack(null).commit();
+                    case R.id.myPlace:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, myPlaceFragment).addToBackStack(null).commit();
+                        break;
+                    case R.id.my:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, myInfoFragment).addToBackStack(null).commit();
                         break;
                     case R.id.more:
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        MoreFragment moreFragment = new MoreFragment();
-                        transaction.show(moreFragment);
-                        transaction.addToBackStack(null);
-                        layout.setVisibility(View.INVISIBLE);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, moreFragment).addToBackStack(null).commit();
                         break;
 
                 }
@@ -122,16 +103,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void moveSearch(View view) {
-        btnv.setVisibility(View.INVISIBLE);
-        layout.setPanelState(EXPANDED);
-    }
-
     @Override
     public void onBackPressed() {
         if(layout.getPanelState() == EXPANDED){
-        layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-        btnv.setVisibility(View.VISIBLE);
+            layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            btnv.setVisibility(View.VISIBLE);
         } else if (System.currentTimeMillis() - time >= 2000){
             time = System.currentTimeMillis();
             Toast.makeText(getApplicationContext(), "뒤로 버톤을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show();
@@ -142,7 +118,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void closingSearch(View view) {layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-        btnv.setVisibility(View.VISIBLE);
+    public void moveSearch(View view) {
+        layout.setPanelState(EXPANDED);
     }
+
+
+    public void closingSearch(View view) {layout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+    }
+
 }

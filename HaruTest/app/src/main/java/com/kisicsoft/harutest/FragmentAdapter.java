@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 public class FragmentAdapter extends FragmentPagerAdapter {
 
     Fragment[] fragments = new Fragment[5];
-    String[] pageTitles = new String[]{"맛집", "쇼핑", "카페", "PC방", "노래방"};
+    String[] pageTitles = new String[]{"맛집", "PC방", "카페", "쇼핑", "노래방"};
 
     public FragmentAdapter(@NonNull FragmentManager fm) {
         super(fm);
