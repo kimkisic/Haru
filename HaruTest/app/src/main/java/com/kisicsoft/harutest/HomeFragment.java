@@ -1,5 +1,9 @@
 package com.kisicsoft.harutest;
 
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -25,6 +30,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 import static com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState.EXPANDED;
@@ -38,6 +45,12 @@ public class HomeFragment extends Fragment {
     ImageView widgetIv;
     TextView widgetTv;
 
+    public HomeFragment() {
+
+        // Required empty public constructor
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,6 +63,7 @@ public class HomeFragment extends Fragment {
         adapter = new FragmentAdapter(getChildFragmentManager());
         pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(pager);
+
 
         new Thread(){
             @Override
@@ -77,6 +91,8 @@ public class HomeFragment extends Fragment {
         }.start();
 
         return view;
+
     }
+
 
 }
