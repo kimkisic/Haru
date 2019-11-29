@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static android.app.Activity.RESULT_OK;
+
 public class MyPlaceFragment extends Fragment {
 
     TextView location;
@@ -87,7 +89,7 @@ public class MyPlaceFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new CardviewAdapter());
+        recyclerView.setAdapter(new CardviewAdapter(getContext()));
         return view;
     }
 
@@ -95,14 +97,16 @@ public class MyPlaceFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == GOOGLE_MAP_CODE){
-            latitude = data.getExtras().getDouble("lat");
-            longituede = data.getExtras().getDouble("lng");
-            try {
-                addr = gCoder.getFromLocation(latitude, longituede, 1);
-                Address a = addr.get(0);
-                location.setText(a.getSubLocality() + " " + a.getThoroughfare() + a.getSubThoroughfare());
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(resultCode == RESULT_OK) {
+                latitude = data.getExtras().getDouble("lat");
+                longituede = data.getExtras().getDouble("lng");
+                try {
+                    addr = gCoder.getFromLocation(latitude, longituede, 1);
+                    Address a = addr.get(0);
+                    location.setText(a.getSubLocality() + " " + a.getThoroughfare() + a.getSubThoroughfare());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

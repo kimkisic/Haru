@@ -1,5 +1,9 @@
 package com.kisicsoft.harutest;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +13,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class CardviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    Context context;
     private ArrayList<Cardviewitem> cardviewitems = new ArrayList<>();
-    public CardviewAdapter() {
+    public CardviewAdapter(Context context) {
+        this.context = context;
         cardviewitems.add(new Cardviewitem(R.drawable.donkatsu,"브라운돈까스 왕십리점", "4.5", "5,701", "123m"));
         cardviewitems.add(new Cardviewitem(R.drawable.food,"스시도쿠", "4.1", "278", "276m"));
         cardviewitems.add(new Cardviewitem(R.drawable.pcc,"라이온시티 PC방 행당점", "4.7", "42", "691m"));
@@ -30,13 +38,27 @@ public class CardviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+
+        final int pos = position;
 
         ((RowCell)holder).imageView.setImageResource(cardviewitems.get(position).imageview);
         ((RowCell)holder).title.setText(cardviewitems.get(position).title);
         ((RowCell)holder).star.setText(cardviewitems.get(position).star);
         ((RowCell)holder).review.setText(cardviewitems.get(position).review);
         ((RowCell)holder).distance.setText(cardviewitems.get(position).distance);
+
+        ((RowCell)holder).itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ItemActivity.class);
+                intent.putExtra("title", cardviewitems.get(pos).title);
+                intent.putExtra("star", cardviewitems.get(pos).star);
+                intent.putExtra("review", cardviewitems.get(pos).review);
+                intent.putExtra("distance", cardviewitems.get(pos).distance);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

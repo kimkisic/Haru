@@ -36,6 +36,8 @@ import java.io.File;
 import java.net.URI;
 import java.net.URL;
 
+import static android.app.Activity.RESULT_OK;
+
 public class MyInfoFragment extends Fragment {
 
     private FirebaseStorage storage;
@@ -77,36 +79,38 @@ public class MyInfoFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == GALLERY_CODE){
-            Uri file = Uri.fromFile(new File(getPath(data.getData())));
-            StorageReference riversRef = storageRef.child("images/"+"profile.jpg");
-            UploadTask uploadTask = riversRef.putFile(file);
+        if(requestCode == GALLERY_CODE) {
+            if (resultCode == RESULT_OK) {
+                Uri file = Uri.fromFile(new File(getPath(data.getData())));
+                StorageReference riversRef = storageRef.child("images/" + "profile.jpg");
+                UploadTask uploadTask = riversRef.putFile(file);
 
 // Register observers to listen for when the download is done or if it fails
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle unsuccessful uploads
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                    // ...
-                }
-            });
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Glide.with(MyInfoFragment.this).load(uri).apply(RequestOptions.circleCropTransform()).into(profile);
-                        }
-                    });
-                }
-            }, 5000);
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                        // ...
+                    }
+                });
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Glide.with(MyInfoFragment.this).load(uri).apply(RequestOptions.circleCropTransform()).into(profile);
+                            }
+                        });
+                    }
+                }, 5000);
+            }
         }
 
     }
