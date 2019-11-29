@@ -36,6 +36,14 @@ public class MyPlaceFragment extends Fragment {
     private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
     private boolean isAccessFineLocation = false;
     private boolean isAccessCoarseLocation = false;
+    private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
+
+    private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
+
+    private boolean isAccessFineLocation = false;
+
+    private boolean isAccessCoarseLocation = false;
+
     private boolean isPermission = false;
 
 
@@ -72,6 +80,21 @@ public class MyPlaceFragment extends Fragment {
                 addr = gCoder.getFromLocation(latitude, longituede, 1);
                 Address a = addr.get(0);
                 location.setText(a.getSubLocality() + " " + a.getThoroughfare() + a.getSubThoroughfare());
+        gps = new GPSInfo(getContext());
+
+        if (gps.isGetLocation) {
+            double latitude = gps.getLatitude();
+            double longituede = gps.getLongitude();
+
+            Geocoder gCoder = new Geocoder(getContext(), Locale.getDefault());
+            List<Address> addr = null;
+            try {
+                addr = gCoder.getFromLocation(latitude, longituede, 1);
+                Address a = addr.get(0);
+
+                for (int i = 0; i <= a.getMaxAddressLineIndex(); i++) {
+                    location.setText(a.getAddressLine(i));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

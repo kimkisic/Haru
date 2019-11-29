@@ -10,6 +10,9 @@ public class SettingActivity extends AppCompatActivity {
 
     ImageView backButton;
 
+
+public class SettingActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
