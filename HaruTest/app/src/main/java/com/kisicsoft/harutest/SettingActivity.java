@@ -1,17 +1,26 @@
 package com.kisicsoft.harutest;
 
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.preference.PreferenceActivity;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.Preference;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 public class SettingActivity extends AppCompatActivity {
+
+    ImageView backButton;
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportFragmentManager().beginTransaction().replace(R.id.settingcontainer, new MySettingFragment()).commit();
+        setContentView(R.layout.activity_setting);
+
+        backButton = findViewById(R.id.backbutton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

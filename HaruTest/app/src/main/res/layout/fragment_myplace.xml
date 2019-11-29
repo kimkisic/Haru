@@ -17,6 +17,7 @@
             android:onClick="moveSearch"/>
 
         <TextView
+            android:id="@+id/location"
             android:padding="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,10 +25,10 @@
             android:layout_marginLeft="10dp"
             android:drawableRight="@drawable/pinn"
             android:drawablePadding="12dp"
-            android:text="성동구 왕십리로20길"
-            android:textSize="28dp"
+            android:textSize="26dp"
             android:textStyle="bold"
-            android:textColor="#191919"/>
+            android:textColor="#191919"
+            android:clickable="true"/>
 
 
         <TextView

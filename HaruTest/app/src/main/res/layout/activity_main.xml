@@ -159,6 +159,7 @@
             android:background="#EAEAEA"/>
 
         <TextView
+            android:id="@+id/moveintomyp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:padding="14dp"
@@ -170,7 +171,8 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:background="@drawable/border"
-            android:backgroundTint="#E3E3E3"/>
+            android:backgroundTint="#E3E3E3"
+            android:clickable="true"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -181,15 +183,17 @@
             android:layout_height="52dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/line_number1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".32"
                 android:text="1호선"
                 android:textSize="16sp"
-                android:textColor="#2478FF"
+                android:textColor="@color/lineNumber1"
                 android:gravity="center"
                 android:background="#FFFFFF"/>
             <TextView
+                android:id="@+id/first"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".68"
@@ -204,15 +208,17 @@
             android:layout_height="52dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/line_number2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".32"
                 android:text="2호선"
                 android:textSize="16sp"
-                android:textColor="#BDBDBD"
+                android:textColor="@color/disable"
                 android:gravity="center"
                 android:background="#E3E3E3"/>
             <TextView
+                android:id="@+id/second"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".68"
@@ -227,6 +233,7 @@
             android:layout_height="52dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/line_number3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".32"
@@ -236,6 +243,7 @@
                 android:gravity="center"
                 android:background="#E3E3E3"/>
             <TextView
+                android:id="@+id/third"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".68"
@@ -250,6 +258,7 @@
             android:layout_height="52dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/line_number4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".32"
@@ -259,6 +268,7 @@
                 android:gravity="center"
                 android:background="#E3E3E3"/>
             <TextView
+                android:id="@+id/fourth"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".68"
@@ -273,6 +283,7 @@
             android:layout_height="52dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/line_number5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".32"
@@ -282,6 +293,7 @@
                 android:gravity="center"
                 android:background="#E3E3E3"/>
             <TextView
+                android:id="@+id/fifth"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".68"
@@ -296,6 +308,7 @@
             android:layout_height="52dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/line_number6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".32"
@@ -306,6 +319,7 @@
                 android:background="#E3E3E3"
                 android:elevation="0dp"/>
             <TextView
+                android:id="@+id/sixth"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".68"
@@ -321,6 +335,7 @@
             android:layout_height="52dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/line_number7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".32"
@@ -331,6 +346,7 @@
                 android:background="#E3E3E3"
                 android:elevation="0dp"/>
             <TextView
+                android:id="@+id/seventh"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".68"
@@ -346,6 +362,7 @@
             android:layout_height="52dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/line_number8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".32"
@@ -356,6 +373,7 @@
                 android:background="#E3E3E3"
                 android:elevation="0dp"/>
             <TextView
+                android:id="@+id/eighth"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".68"
@@ -371,6 +389,7 @@
             android:layout_height="52dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/line_number9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".32"
@@ -381,6 +400,7 @@
                 android:background="#E3E3E3"
                 android:elevation="0dp"/>
             <TextView
+                android:id="@+id/ninth"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".68"

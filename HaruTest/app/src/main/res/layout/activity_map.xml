@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapActivity"
+    android:id="@+id/layout_map">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        tools:context=".MapActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_below="@+id/tvv"/>
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/marker"/>
+
+        <TextView
+            android:id="@+id/tvv"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:text="위치지정"
+            android:textColor="#191919"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="#FFFFFFFF"/>
+        <ImageView
+            android:id="@+id/backbutton_map"
+            android:padding="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:clickable="true"
+            android:layout_alignParentLeft="true"/>
+
+    <View
+        android:id="@+id/v"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D5D5D5"
+        android:layout_below="@+id/tvv"/>
+
+    <TextView
+        android:id="@+id/tvvv"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="#E6FFFFFF"
+        android:text="성동구"
+        android:textSize="14sp"
+        android:textColor="#262626"
+        android:gravity="center"
+        android:layout_below="@+id/v"/>
+
+    <TextView
+        android:id="@+id/select_position"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:text="위치지정 완료"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:background="#F15F5F"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"/>
+
+    </RelativeLayout>
