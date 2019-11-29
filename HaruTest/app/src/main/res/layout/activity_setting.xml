@@ -27,11 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/back"
-            android:clickable="true"
-            android:padding="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back"/>
+            android:clickable="true"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -51,7 +47,8 @@
         android:layout_weight="0.8"
         android:layout_height="46dp"
         android:textSize="24sp"
-        android:textColor="#191919"/>
+        android:textColor="#191919"
+        android:text="앱 잠금설정"/>
 
     <Switch
         android:layout_width="0dp"
@@ -80,8 +77,7 @@
                 android:layout_height="46dp"
                 android:textSize="24sp"
                 android:textColor="#191919"
-                android:text="PUSH알림 수신"
-                android:text="앱 잠금설정"/>
+                android:text="PUSH알림 수신"/>
 
             <Switch
                 android:layout_width="0dp"
@@ -91,7 +87,6 @@
                 style="@style/SwitchButtonMD"/>
 
         </LinearLayout>
-
 
         <View
             android:layout_width="match_parent"
@@ -141,7 +136,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#D5D5D5"/>
-
 
 
     </LinearLayout>

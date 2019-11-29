@@ -26,7 +26,6 @@
             android:value="AIzaSyBbytQkW-zmXpAOKon7G8EUwc6BrG2kj7Y" />
 
         <activity android:name=".SettingActivity" />
-        <activity android:name=".SettingActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
