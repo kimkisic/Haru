@@ -399,6 +399,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        first.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("lat", 37.556201);
+                intent.putExtra("lng", 126.972112);
+                startActivity(intent);
+            }
+        });
+
+        second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("lat", 37.565681);
+                intent.putExtra("lng", 126.977133);
+                startActivity(intent);
+            }
+        });
+
 
         moreFragment = new MoreFragment();
         homeFragment = new HomeFragment();

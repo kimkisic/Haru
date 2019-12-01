@@ -70,7 +70,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest locationRequest;
-    private Location location;
 
     private View mLayout;
 
@@ -168,7 +167,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         double v = intent.getExtras().getDouble("lat");
         double v2 = intent.getExtras().getDouble("lng");
 
-        //디폴트 위치, Seoul
         LatLng DEFAULT_LOCATION = new LatLng(v, v2);
 
         if (currentMarker != null) currentMarker.remove();
@@ -245,7 +243,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     public void GeoCoding(Double latitude, Double longitude) {
 
-        //지오코더... GPS를 주소로 변환
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
 
         List<Address> addresses = null;
@@ -257,7 +254,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     longitude,
                     1);
         } catch (IOException ioException) {
-            //네트워크 문제
             Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
         } catch (IllegalArgumentException illegalArgumentException) {
             Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
@@ -303,9 +299,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
-    /*
-     * ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
-     */
+
     @Override
     public void onRequestPermissionsResult(int permsRequestCode,
                                            @NonNull String[] permissions,
@@ -313,12 +307,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
 
-            // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
 
             boolean check_result = true;
 
-
-            // 모든 퍼미션을 허용했는지 체크합니다.
 
             for (int result : grandResults) {
                 if (result != PackageManager.PERMISSION_GRANTED) {
@@ -330,17 +321,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             if ( check_result ) {
 
-                // 퍼미션을 허용했다면 위치 업데이트를 시작합니다.
                 startLocationUpdates();
             }
             else {
-                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
+
 
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
 
 
-                    // 사용자가 거부만 선택한 경우에는 앱을 다시 실행하여 허용을 선택하면 앱을 사용할 수 있습니다.
                     Snackbar.make(mLayout, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요. ",
                             Snackbar.LENGTH_INDEFINITE).setAction("확인", new View.OnClickListener() {
 
@@ -354,7 +343,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }else {
 
 
-                    // "다시 묻지 않음"을 사용자가 체크하고 거부를 선택한 경우에는 설정(앱 정보)에서 퍼미션을 허용해야 앱을 사용할 수 있습니다.
                     Snackbar.make(mLayout, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ",
                             Snackbar.LENGTH_INDEFINITE).setAction("확인", new View.OnClickListener() {
 
@@ -371,7 +359,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-    //여기부터는 GPS 활성화를 위한 메소드들
     private void showDialogForLocationServiceSetting() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MapActivity.this);
@@ -405,7 +392,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             case GPS_ENABLE_REQUEST_CODE:
 
-                //사용자가 GPS 활성 시켰는지 검사
                 if (checkLocationServicesStatus()) {
                     if (checkLocationServicesStatus()) {
 
