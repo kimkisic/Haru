@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="close">#BDBDBD</color>
+    <color name="lineNumber1">#2478FF</color>
+    <color name="lineNumber2">#59DA50</color>
+    <color name="lineNumber3">#FF8224</color>
+    <color name="lineNumber4">#6799FF</color>
+    <color name="lineNumber5">#9354ED</color>
+    <color name="lineNumber6">#875E00</color>
+    <color name="lineNumber7">#597812</color>
+    <color name="lineNumber8">#EB539E</color>
+    <color name="lineNumber9">#CCA63D</color>
+    <color name="disable">#BDBDBD</color>
+    <color name="backDisable">#E3E3E3</color>
+</resources>
