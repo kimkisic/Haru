@@ -25,41 +25,19 @@ import androidx.core.content.ContextCompat;
 public class GPSInfo extends Service implements LocationListener {
     private final Context mContext;
 
-
-    // 현재 GPS 사용유무
-
     boolean isGPSEnabled = false;
-
-
-    // 네트워크 사용유무
-
     boolean isNetworkEnabled = false;
-
-
-    // GPS 상태값
-
     boolean isGetLocation = false;
-
 
     Location location;
 
     double lat; // 위도
-
     double lon; // 경도
 
-
-    // 최소 GPS 정보 업데이트 거리 10미터
-
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
-
-
-    // 최소 GPS 정보 업데이트 시간 밀리세컨(1분)
-
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
 
-
     protected LocationManager locationManager;
-
 
     public GPSInfo(Context context) {
 
@@ -320,8 +298,6 @@ public class GPSInfo extends Service implements LocationListener {
 
                     public void onClick(DialogInterface dialog, int id) {
 
-                        // 네 클릭
-
                         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 
                         mContext.startActivity(intent);
@@ -334,8 +310,6 @@ public class GPSInfo extends Service implements LocationListener {
 
                     public void onClick(DialogInterface dialog, int id) {
 
-                        // 아니오 클릭. dialog 닫기.
-
                         dialog.cancel();
 
                     }
@@ -343,29 +317,10 @@ public class GPSInfo extends Service implements LocationListener {
                 });
 
         AlertDialog alert = alt_bld.create();
-
-
-        // 대화창 클릭시 뒷 배경 어두워지는 것 막기
-
         alert.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-
-
-        // 대화창 제목 설정
-
         alert.setTitle("GPS 사용 허가");
-
-
-        // 대화창 아이콘 설정
-
         alert.setIcon(R.drawable.fui_ic_check_circle_black_128dp);
-
-
-        // 대화창 배경 색 설정
-
         alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,62,79,92)));
-
-
         alert.show();
-
     }
 }

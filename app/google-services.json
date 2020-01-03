@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "172276606731",
-    "firebase_url": "https://harutest.firebaseio.com",
-    "project_id": "harutest",
-    "storage_bucket": "harutest.appspot.com"
+    "project_number": "309385892579",
+    "firebase_url": "https://haru-16ce6.firebaseio.com",
+    "project_id": "haru-16ce6",
+    "storage_bucket": "haru-16ce6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:172276606731:android:23beabddc7631ca6ee640e",
+        "mobilesdk_app_id": "1:309385892579:android:6580f099e8960c2e9d6bd6",
         "android_client_info": {
           "package_name": "com.kisicsoft.harutest"
         }
       },
       "oauth_client": [
         {
-          "client_id": "172276606731-vfa365ntcqac8ho0sr0n12b0ighbcsg0.apps.googleusercontent.com",
+          "client_id": "309385892579-4he3gtdpkqomhv3ku5uaif0grk3d65e8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kisicsoft.harutest",
+            "certificate_hash": "9210a70ec9808b56ff0c745c354ed9ad898176a3"
+          }
+        },
+        {
+          "client_id": "309385892579-trcmfvmm3u5deteas00j8knkeoo2tj4h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBbytQkW-zmXpAOKon7G8EUwc6BrG2kj7Y"
+          "current_key": "AIzaSyB5DmHMeXnrSv76CNkk51cryyKsb1W0mtY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "172276606731-vfa365ntcqac8ho0sr0n12b0ighbcsg0.apps.googleusercontent.com",
+              "client_id": "309385892579-trcmfvmm3u5deteas00j8knkeoo2tj4h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

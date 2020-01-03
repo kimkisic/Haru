@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".SearchActivity">
+    android:gravity="bottom"
+    android:id="@+id/sliding_search"
+    tools:context=".SearchActivity"
+    sothree:umanoPanelHeight="0dp"
+    sothree:umanoShadowHeight="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/searchBtn"
         android:padding="8dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
@@ -50,5 +60,295 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:padding="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".96"
+                android:text="검색"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textColor="#191919"/>
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_weight=".04"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/closeicon"
+                android:clickable="true"
+                android:onClick="close"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#EAEAEA"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/moveintomyp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="14dp"
+            android:layout_width="210dp"
+            android:layout_height="50dp"
+            android:text="내 주변으로 검색"
+            android:textColor="#353535"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/border"
+            android:backgroundTint="#E3E3E3"
+            android:clickable="true"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#EAEAEA"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/line_number1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".32"
+                android:text="1호선"
+                android:textSize="16sp"
+                android:textColor="@color/lineNumber1"
+                android:gravity="center"
+                android:background="#FFFFFF"/>
+            <TextView
+                android:id="@+id/first"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".68"
+                android:text="      서울역"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#353535"
+                android:background="#FFFFFF"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/line_number2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".32"
+                android:text="2호선"
+                android:textSize="16sp"
+                android:textColor="@color/disable"
+                android:gravity="center"
+                android:background="#E3E3E3"/>
+            <TextView
+                android:id="@+id/second"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".68"
+                android:text="      시청역"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#353535"
+                android:background="#FFFFFF"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/line_number3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".32"
+                android:text="3호선"
+                android:textSize="16sp"
+                android:textColor="#BDBDBD"
+                android:gravity="center"
+                android:background="#E3E3E3"/>
+            <TextView
+                android:id="@+id/third"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".68"
+                android:text="      종각역"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#353535"
+                android:background="#FFFFFF"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/line_number4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".32"
+                android:text="4호선"
+                android:textSize="16sp"
+                android:textColor="#BDBDBD"
+                android:gravity="center"
+                android:background="#E3E3E3"/>
+            <TextView
+                android:id="@+id/fourth"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".68"
+                android:text="      종로3가역"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#353535"
+                android:background="#FFFFFF"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/line_number5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".32"
+                android:text="5호선"
+                android:textSize="16sp"
+                android:textColor="#BDBDBD"
+                android:gravity="center"
+                android:background="#E3E3E3"/>
+            <TextView
+                android:id="@+id/fifth"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".68"
+                android:text="      종로5가역"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#353535"
+                android:background="#FFFFFF"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/line_number6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".32"
+                android:text="6호선"
+                android:textSize="16sp"
+                android:textColor="#BDBDBD"
+                android:gravity="center"
+                android:background="#E3E3E3"
+                android:elevation="0dp"/>
+            <TextView
+                android:id="@+id/sixth"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".68"
+                android:text="      동대문역"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#353535"
+                android:background="#FFFFFF"
+                android:elevation="0dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/line_number7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".32"
+                android:text="7호선"
+                android:textSize="16sp"
+                android:textColor="#BDBDBD"
+                android:gravity="center"
+                android:background="#E3E3E3"
+                android:elevation="0dp"/>
+            <TextView
+                android:id="@+id/seventh"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".68"
+                android:text="      신설동역"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#353535"
+                android:background="#FFFFFF"
+                android:elevation="0dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/line_number8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".32"
+                android:text="8호선"
+                android:textSize="16sp"
+                android:textColor="#BDBDBD"
+                android:gravity="center"
+                android:background="#E3E3E3"
+                android:elevation="0dp"/>
+            <TextView
+                android:id="@+id/eighth"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".68"
+                android:text="      제기동역"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#353535"
+                android:background="#FFFFFF"
+                android:elevation="0dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/line_number9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".32"
+                android:text="9호선"
+                android:textSize="16sp"
+                android:textColor="#BDBDBD"
+                android:gravity="center"
+                android:background="#E3E3E3"
+                android:elevation="0dp"/>
+            <TextView
+                android:id="@+id/ninth"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".68"
+                android:text="      제기동역"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#353535"
+                android:background="#FFFFFF"
+                android:elevation="0dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

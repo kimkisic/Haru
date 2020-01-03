@@ -51,6 +51,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+import static com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState.COLLAPSED;
 import static com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState.EXPANDED;
 
 public class MainActivity extends AppCompatActivity {
@@ -402,6 +403,7 @@ public class MainActivity extends AppCompatActivity {
         first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                layout.setPanelState(COLLAPSED);
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 intent.putExtra("lat", 37.556201);
                 intent.putExtra("lng", 126.972112);
@@ -412,9 +414,30 @@ public class MainActivity extends AppCompatActivity {
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                layout.setPanelState(COLLAPSED);
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 intent.putExtra("lat", 37.565681);
                 intent.putExtra("lng", 126.977133);
+                startActivity(intent);
+            }
+        });
+        third.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout.setPanelState(COLLAPSED);
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("lat", 37.570229);
+                intent.putExtra("lng", 126.983062);
+                startActivity(intent);
+            }
+        });
+        fourth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout.setPanelState(COLLAPSED);
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("lat", 37.570437);
+                intent.putExtra("lng", 126.992203);
                 startActivity(intent);
             }
         });

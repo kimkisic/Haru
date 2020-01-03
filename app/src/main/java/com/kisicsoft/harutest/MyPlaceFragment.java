@@ -103,7 +103,9 @@ public class MyPlaceFragment extends Fragment {
                 try {
                     addr = gCoder.getFromLocation(latitude, longituede, 1);
                     Address a = addr.get(0);
-                    location.setText(a.getSubLocality() + " " + a.getThoroughfare() + a.getSubThoroughfare());
+                    if(!a.getSubLocality().equals("null") && !a.getThoroughfare().equals("null") && !a.getSubThoroughfare().equals("null")) {
+                        location.setText(a.getSubLocality() + " " + a.getThoroughfare() + a.getSubThoroughfare());
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -113,68 +115,35 @@ public class MyPlaceFragment extends Fragment {
 
     public void callPermission() {
 
-        // Check the SDK version and whether the permission is already granted or not.
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 
                 && ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-
                 != PackageManager.PERMISSION_GRANTED) {
-
-
-
             requestPermissions(
-
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-
                     PERMISSIONS_ACCESS_FINE_LOCATION);
-
-
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-
                 && ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
-
                 != PackageManager.PERMISSION_GRANTED){
-
-
             requestPermissions(
-
                     new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
-
                     PERMISSIONS_ACCESS_COARSE_LOCATION);
-
         } else {
-
             isPermission = true;
-
         }
-
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == PERMISSIONS_ACCESS_FINE_LOCATION
-
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-
             isAccessFineLocation = true;
-
-
         } else if (requestCode == PERMISSIONS_ACCESS_COARSE_LOCATION
-
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
-
             isAccessCoarseLocation = true;
-
         }
-
-
         if (isAccessFineLocation && isAccessCoarseLocation) {
-
             isPermission = true;
-
         }
     }
 }
