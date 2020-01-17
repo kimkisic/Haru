@@ -11,9 +11,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_haru"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_haru_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SearchActivity"></activity>
@@ -25,7 +25,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBbytQkW-zmXpAOKon7G8EUwc6BrG2kj7Y" />
+            android:value="AIzaSyB5DmHMeXnrSv76CNkk51cryyKsb1W0mtY" />
 
         <activity android:name=".SettingActivity" />
         <activity android:name=".LoginActivity">

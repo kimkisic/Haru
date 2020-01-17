@@ -103,7 +103,21 @@ public class MyPlaceFragment extends Fragment {
                 try {
                     addr = gCoder.getFromLocation(latitude, longituede, 1);
                     Address a = addr.get(0);
-                    if(!a.getSubLocality().equals("null") && !a.getThoroughfare().equals("null") && !a.getSubThoroughfare().equals("null")) {
+                    if(a.getSubLocality() == null && a.getThoroughfare() != null && a.getSubThoroughfare() != null) {
+                        location.setText(a.getThoroughfare() + a.getSubThoroughfare());
+                    } else if(a.getThoroughfare() == null && a.getSubLocality() != null && a.getSubThoroughfare() != null){
+                        location.setText(a.getSubLocality() + " " + a.getSubThoroughfare());
+                    } else if(a.getSubThoroughfare() == null && a.getSubLocality() != null && a.getThoroughfare() != null){
+                        location.setText(a.getSubLocality() + " " + a.getThoroughfare());
+                    } else if(a.getSubLocality() == null && a.getThoroughfare() == null){
+                        location.setText("주소 미정");
+                    } else if(a.getSubLocality() == null && a.getSubThoroughfare() == null){
+                        location.setText(a.getThoroughfare());
+                    } else if(a.getThoroughfare() == null && a.getSubThoroughfare() == null){
+                        location.setText(a.getSubLocality());
+                    } else if(a.getSubLocality() == null && a.getThoroughfare() == null && a.getSubThoroughfare() == null){
+                        location.setText("주소 미정");
+                    } else {
                         location.setText(a.getSubLocality() + " " + a.getThoroughfare() + a.getSubThoroughfare());
                     }
                 } catch (IOException e) {
