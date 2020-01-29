@@ -13,6 +13,7 @@
     <color name="lineNumber7">#597812</color>
     <color name="lineNumber8">#EB539E</color>
     <color name="lineNumber9">#CCA63D</color>
+    <color name="black">#363636</color>
     <color name="disable">#BDBDBD</color>
     <color name="backDisable">#E3E3E3</color>
 </resources>

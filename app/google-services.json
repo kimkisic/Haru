@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "309385892579-51h863p6j8ocu101n1u541i4qrr8fuqr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kisicsoft.harutest",
+            "certificate_hash": "3faa3b9e7bf12965239a336d338696e844a7cbe5"
+          }
+        },
+        {
           "client_id": "309385892579-l6g9ea6o7ldg2hc9d3pujl35f41v33qm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

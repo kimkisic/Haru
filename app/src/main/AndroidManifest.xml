@@ -16,9 +16,16 @@
         android:roundIcon="@mipmap/ic_launcher_haru_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <uses-library android:name="org.apache.http.legacy"
-            android:required="false"/>
-        <activity android:name=".SearchActivity"></activity>
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id"/>
+        <activity android:name=".LoginActivity"></activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".SearchActivity" />
         <activity android:name=".ItemActivity" />
         <activity android:name=".MapActivity" />
 
@@ -30,7 +37,7 @@
             android:value="AIzaSyB5DmHMeXnrSv76CNkk51cryyKsb1W0mtY" />
 
         <activity android:name=".SettingActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
