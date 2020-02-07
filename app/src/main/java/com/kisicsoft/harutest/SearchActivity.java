@@ -1,5 +1,6 @@
 package com.kisicsoft.harutest;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,13 +10,20 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,16 +41,46 @@ public class SearchActivity extends AppCompatActivity {
     Geocoder gCoder;
     ImageView search;
     SlidingUpPanelLayout sliding;
-    RecyclerView recycler;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<Cardviewitem> cardviewitemArrayList;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        recycler = findViewById(R.id.recycler_search);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-        recycler.setAdapter(new CardviewAdapter(this));
+        recyclerView = findViewById(R.id.recycler_search);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        cardviewitemArrayList = new ArrayList<>();
+
+        database = FirebaseDatabase.getInstance();
+
+        databaseReference = database.getReference("Data");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                cardviewitemArrayList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Cardviewitem cardviewitem = snapshot.getValue(Cardviewitem.class);
+                    cardviewitemArrayList.add(cardviewitem);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("MyPlaceFragment", String.valueOf(databaseError.toException()));
+            }
+        });
+
+        adapter = new CardviewAdapter(this, cardviewitemArrayList);
+
         sliding = findViewById(R.id.sliding_search);
         search = findViewById(R.id.searchBtn);
         search.setOnClickListener(new View.OnClickListener() {

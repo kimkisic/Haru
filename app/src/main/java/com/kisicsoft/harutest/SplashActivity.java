@@ -17,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         ImageView splashGif = (ImageView)findViewById(R.id.splash_gif_view);
-        Glide.with(this).load(R.raw.haru).into(splashGif);
+        Glide.with(this).load(R.raw.city).centerCrop().into(splashGif);
 
         startLoading();
     }
@@ -30,6 +30,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 3500);
+        }, 5000);
     }
 }

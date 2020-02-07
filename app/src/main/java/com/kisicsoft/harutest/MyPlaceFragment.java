@@ -8,6 +8,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,6 +40,12 @@ import static android.app.Activity.RESULT_OK;
 public class MyPlaceFragment extends Fragment {
 
     TextView location;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<Cardviewitem> cardviewitemArrayList;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     final static int GOOGLE_MAP_CODE = 101;
 
@@ -87,9 +102,35 @@ public class MyPlaceFragment extends Fragment {
         }
     callPermission();
 
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new CardviewAdapter(getContext()));
+        recyclerView = view.findViewById(R.id.recycler);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        cardviewitemArrayList = new ArrayList<>();
+
+        database = FirebaseDatabase.getInstance();
+
+        databaseReference = database.getReference("Data");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                cardviewitemArrayList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Cardviewitem cardviewitem = snapshot.getValue(Cardviewitem.class);
+                    cardviewitemArrayList.add(cardviewitem);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("MyPlaceFragment", String.valueOf(databaseError.toException()));
+            }
+        });
+
+        adapter = new CardviewAdapter(getActivity(), cardviewitemArrayList);
+        recyclerView.setAdapter(adapter);
+
         return view;
     }
 

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -43,14 +45,23 @@ public class MyInfoFragment extends Fragment {
     private FirebaseStorage storage;
     StorageReference storageRef;
     StorageReference imagesRef;
+    private FirebaseAuth auth;
 
     ImageView profile;
+    TextView tv_name;
+    TextView tv_email;
     private static final int GALLERY_CODE = 10;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_myinfo, container, false);
+
+        tv_name = view.findViewById(R.id.tv_name);
+        tv_email = view.findViewById(R.id.tv_email);
+        auth = FirebaseAuth.getInstance();
+        tv_name.setText(auth.getCurrentUser().getDisplayName());
+        tv_email.setText(auth.getCurrentUser().getEmail());
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},0);
         }

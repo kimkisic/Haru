@@ -11,75 +11,63 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-public class CardviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CardviewAdapter extends RecyclerView.Adapter<CardviewAdapter.CustomViewHolder> {
 
-    Context context;
-    private ArrayList<Cardviewitem> cardviewitems = new ArrayList<>();
-    public CardviewAdapter(Context context) {
+    private Context context;
+    private ArrayList<Cardviewitem> cardviewitemArrayList;
+
+    public CardviewAdapter(Context context, ArrayList<Cardviewitem> cardviewitemArrayList) {
         this.context = context;
-        cardviewitems.add(new Cardviewitem(R.drawable.donkatsu,"브라운돈까스 왕십리점", "4.5", "5,701", "123m"));
-        cardviewitems.add(new Cardviewitem(R.drawable.food,"스시도쿠", "4.1", "278", "276m"));
-        cardviewitems.add(new Cardviewitem(R.drawable.pcc,"라이온시티 PC방 행당점", "4.7", "42", "691m"));
-        cardviewitems.add(new Cardviewitem(R.drawable.cf,"9HERTZ", "4.2", "592", "801m"));
-        cardviewitems.add(new Cardviewitem(R.drawable.hyun,"엔터식스왕십리역사점", "3.9", "1,121", "1,127m"));
+        this.cardviewitemArrayList = cardviewitemArrayList;
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
-        return new RowCell(view);
+        CustomViewHolder holder = new CustomViewHolder(view);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
-
-        final int pos = position;
-
-        ((RowCell)holder).imageView.setImageResource(cardviewitems.get(position).imageview);
-        ((RowCell)holder).title.setText(cardviewitems.get(position).title);
-        ((RowCell)holder).star.setText(cardviewitems.get(position).star);
-        ((RowCell)holder).review.setText(cardviewitems.get(position).review);
-        ((RowCell)holder).distance.setText(cardviewitems.get(position).distance);
-
-        ((RowCell)holder).itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ItemActivity.class);
-                intent.putExtra("title", cardviewitems.get(pos).title);
-                intent.putExtra("star", cardviewitems.get(pos).star);
-                intent.putExtra("review", cardviewitems.get(pos).review);
-                intent.putExtra("distance", cardviewitems.get(pos).distance);
-                context.startActivity(intent);
-            }
-        });
+    public void onBindViewHolder(@NonNull CardviewAdapter.CustomViewHolder holder, int position) {
+        Glide.with(holder.itemView)
+                .load(cardviewitemArrayList.get(position).getImageview())
+                .into(holder.cardview_image);
+        holder.cardview_title.setText(cardviewitemArrayList.get(position).getTitle());
+        holder.cardview_star.setText(cardviewitemArrayList.get(position).getStar());
+        holder.cardview_review.setText(cardviewitemArrayList.get(position).getReview());
+        holder.cardview_distance.setText(cardviewitemArrayList.get(position).getDistance());
 
     }
 
     @Override
     public int getItemCount() {
-        return cardviewitems.size();
+        return (cardviewitemArrayList != null ? cardviewitemArrayList.size() : 0);
     }
 
-    private class RowCell extends RecyclerView.ViewHolder {
-        public ImageView imageView;
-        public TextView title;
-        public TextView star;
-        public TextView review;
-        public TextView distance;
-        public RowCell(View view) {
-            super(view);
-            imageView = (ImageView)view.findViewById(R.id.cardview_image);
-            title = (TextView)view.findViewById(R.id.cardview_title);
-            star = (TextView)view.findViewById(R.id.cardview_star);
-            review = (TextView)view.findViewById(R.id.cardview_reivew);
-            distance = (TextView)view.findViewById(R.id.cardview_distance);
+    public class CustomViewHolder extends RecyclerView.ViewHolder {
+        ImageView cardview_image;
+        TextView cardview_title;
+        TextView cardview_star;
+        TextView cardview_review;
+        TextView cardview_distance;
+
+        public CustomViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.cardview_image = itemView.findViewById(R.id.cardview_image);
+            this.cardview_title = itemView.findViewById(R.id.cardview_title);
+            this.cardview_star = itemView.findViewById(R.id.cardview_star);
+            this.cardview_review = itemView.findViewById(R.id.cardview_reivew);
+            this.cardview_distance = itemView.findViewById(R.id.cardview_distance);
         }
     }
 }
