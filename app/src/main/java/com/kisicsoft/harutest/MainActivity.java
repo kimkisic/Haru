@@ -476,6 +476,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.review:
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, reviewFragment).addToBackStack(null).commit();
+                        break;
                     case R.id.myPlace:
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, myPlaceFragment).addToBackStack(null).commit();
                         break;
